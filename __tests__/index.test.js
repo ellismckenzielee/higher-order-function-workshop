@@ -230,7 +230,7 @@ describe('Higher Order Functions', () => {
         expect(index()).toBe(undefined);
       });
     });
-    describe('element', () => {
+    describe.only('element', () => {
       it('on first invocation will return a function', () => {
         const ele = hof.element([], hof.fromTo(0, 1));
         expect(typeof ele).toBe('function');

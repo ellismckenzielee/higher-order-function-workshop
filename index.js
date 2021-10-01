@@ -67,9 +67,8 @@ hof.liftf = function(func) {
 // console.log(thirdCall);
 
 hof.twice = function(func) {
-    console.log('INSIDE TWICE', func);
     function addNum(num) {
-        console.log('INSIDE ADDNUM', num);
+       
         return func(num, num);
     }
     return addNum;
@@ -89,17 +88,69 @@ hof.composeu = function(func1, func2) {
     return addNum;
 };
 
-hof.composeb = function() {};
+hof.composeb = function(func1, func2) {
+    function innerFunc (a, b, c) {
+       let func1Result = func1(a,b) 
+       let func2Result = func2(func1Result, c)
+       return func2Result
+    }
+    return innerFunc
+};
 
-hof.limit = function() {};
+hof.limit = function(func, limitNum) {
+    let count = 0
+    function innerFunc (a, b) {
+        if(count < limitNum) {
+            count++
+            return func(a,b)
+        }
+    }
+    return innerFunc
+};
 
-hof.from = function() {};
+hof.from = function(num) {
+    let count = num
+    function innerFunc () {
+            count++
+            return count-1
+        }
+    return innerFunc
+};
 
-hof.to = function() {};
+hof.to = function(index, num) {
+let maxValue = num
+    function innerFunc () {
+        let generatedVales = index()
+        if (generatedVales < maxValue) {
+            return generatedVales
+        }
+    }
+    return innerFunc
+};
 
-hof.fromTo = function() {};
 
-hof.element = function() {};
+
+hof.fromTo = function(a, b) {
+    let counter = a
+    let maxValue = b
+        function innerFunc () {
+            if (counter < maxValue) {
+            counter++ 
+            return counter -1
+            }
+        }
+        return innerFunc
+};
+
+hof.element = function(arr, generator = hof.fromTo(0, arr.length)) {
+        function innerFunc () {
+            let index = generator()
+            
+        
+            return arr[index]
+    }
+    return innerFunc
+};
 
 hof.collect = function() {};
 
