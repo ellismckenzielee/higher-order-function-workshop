@@ -25,20 +25,29 @@ hof.mul = function(a, b) {
     return a * b;
 };
 
-function addOne () {
-    let incrementor = 1;
+
+
+hof.inc = function (num) {
+return hof.add (1, num)
+}
+
+
+
+ hof.addf = function (value) {
     function add(num) {
-        return num + incrementor;
+        return num + value;
     }
     return add;
 }
-let incrementor = addOne(); 
 
-hof.inc = incrementor;
 
-hof.addf = function() {};
+hof.curry = function(name, num) {
+        function insideFunc (value) {
+           return name(num,value)
+        }
+    return insideFunc
+};
 
-hof.curry = function() {};
 
 hof.liftf = function() {};
 

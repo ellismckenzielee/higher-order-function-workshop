@@ -51,7 +51,7 @@ describe('Higher Order Functions', () => {
   });
 
   describe('Functions with multiple invocations', () => {
-    describe.only('inc', () => {
+    describe('inc', () => {
       it('increments the passed argument by 1', () => {
         expect(hof.inc(0)).toBe(1);
         expect(hof.inc(-3)).toBe(-2);
@@ -80,7 +80,7 @@ describe('Higher Order Functions', () => {
         expect(timesByThirty(6)).toBe(hof.mul(30, 6));
       });
     });
-    describe('liftf', () => {
+    describe.only('liftf', () => {
       it('returns a function on first invocation', () => {
         expect(typeof hof.liftf(hof.add)).toBe('function');
       });
