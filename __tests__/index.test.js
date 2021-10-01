@@ -80,7 +80,7 @@ describe('Higher Order Functions', () => {
         expect(timesByThirty(6)).toBe(hof.mul(30, 6));
       });
     });
-    describe.only('liftf', () => {
+    describe('liftf', () => {
       it('returns a function on first invocation', () => {
         expect(typeof hof.liftf(hof.add)).toBe('function');
       });

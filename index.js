@@ -49,11 +49,45 @@ hof.curry = function(name, num) {
 };
 
 
-hof.liftf = function() {};
+hof.liftf = function(func) {
+     function addFirstNum(a) {
+        function addSecondNum(b) {
+            return func(a,b);
+        }
+        return addSecondNum;
+     }
+     return addFirstNum;
+};
 
-hof.twice = function() {};
+// let firstCall = hof.liftf(hof.add);
+// console.log(firstCall);
+// let secondCall = firstCall(1);
+// console.log(secondCall);
+// let thirdCall = secondCall(3);
+// console.log(thirdCall);
 
-hof.composeu = function() {};
+hof.twice = function(func) {
+    console.log('INSIDE TWICE', func);
+    function addNum(num) {
+        console.log('INSIDE ADDNUM', num);
+        return func(num, num);
+    }
+    return addNum;
+};
+
+// let firstCall = hof.twice(hof.add); //addNum
+// let secondCall = firstCall(3);
+
+
+
+hof.composeu = function(func1, func2) {
+    function addNum(num) {
+        let result1 = func1(num);
+        let result2 = func2(result1);
+        return result2;
+    }
+    return addNum;
+};
 
 hof.composeb = function() {};
 
