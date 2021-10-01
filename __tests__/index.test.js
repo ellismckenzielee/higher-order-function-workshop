@@ -51,7 +51,7 @@ describe('Higher Order Functions', () => {
   });
 
   describe('Functions with multiple invocations', () => {
-    describe('inc', () => {
+    describe.only('inc', () => {
       it('increments the passed argument by 1', () => {
         expect(hof.inc(0)).toBe(1);
         expect(hof.inc(-3)).toBe(-2);

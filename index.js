@@ -1,16 +1,40 @@
+const { number } = require("yargs");
+
 const hof = {};
 
-hof.identity = function() {};
+hof.identity = function(arg) { 
+    return arg;
+};
 
-hof.identityf = function() {};
+hof.identityf = function(arg) {
+    function returnArgument() {
+        return arg;
+    }
+    return returnArgument;
+};
 
-hof.add = function() {};
+hof.add = function(a, b) {
+    return a + b;
+};
 
-hof.sub = function() {};
+hof.sub = function(a, b) {
+    return a-b;
+};
 
-hof.mul = function() {};
+hof.mul = function(a, b) {
+    return a * b;
+};
 
-hof.inc = function() {};
+function addOne () {
+    let incrementor = 1;
+    function add(num) {
+        return num + incrementor;
+    }
+    return add;
+}
+let incrementor = addOne(); 
+
+hof.inc = incrementor;
 
 hof.addf = function() {};
 
